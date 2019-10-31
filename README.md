@@ -1,6 +1,6 @@
 # welcometo
 
-Welcome to line tool.
+Welcome to command line tool.
 
 Show welcome message about GitHub organization.
 
