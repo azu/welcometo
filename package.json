@@ -1,0 +1,81 @@
+{
+  "name": "welcometo",
+  "version": "1.0.0",
+  "description": "Welcome message script: Welcome to @organization",
+  "keywords": [
+    "cli",
+    "github"
+  ],
+  "homepage": "https://github.com/azu/welcometo",
+  "bugs": {
+    "url": "https://github.com/azu/welcometo/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/azu/welcometo.git"
+  },
+  "license": "MIT",
+  "author": "azu",
+  "bin": {
+    "welcometo": "./bin/cmd.js"
+  },
+  "files": [
+    "bin/",
+    "lib/",
+    "src/"
+  ],
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "build": "cross-env NODE_ENV=production tsc -p .",
+    "clean": "rimraf lib/",
+    "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
+    "prepublish": "npm run --if-present build",
+    "test": "mocha \"test/**/*.ts\"",
+    "watch": "tsc -p . --watch"
+  },
+  "husky": {
+    "hooks": {
+      "precommit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,css}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "prettier": {
+    "printWidth": 120,
+    "singleQuote": false,
+    "tabWidth": 4
+  },
+  "devDependencies": {
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.12.3",
+    "@types/react": "^16.9.11",
+    "cross-env": "^6.0.3",
+    "husky": "^3.0.9",
+    "lint-staged": "^9.4.2",
+    "mocha": "^6.2.2",
+    "prettier": "^1.18.2",
+    "rimraf": "^3.0.0",
+    "ts-node": "^8.4.1",
+    "ts-node-test-register": "^8.0.1",
+    "typescript": "^3.6.4"
+  },
+  "dependencies": {
+    "got": "^9.6.0",
+    "ink": "^2.5.0",
+    "ink-big-text": "^1.0.1",
+    "ink-gradient": "^1.0.0",
+    "ink-image": "^2.0.0",
+    "meow": "^5.0.0",
+    "react": "^16.11.0",
+    "terminal-image": "^0.2.0"
+  }
+}
