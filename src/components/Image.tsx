@@ -38,6 +38,6 @@ export class Image extends React.Component<ImageProps, { image: string }> {
     }
 
     render() {
-        return <Box>{this.state.image}</Box>;
+        return <Box paddingLeft={25}>{this.state.image}</Box>;
     }
 }
