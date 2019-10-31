@@ -76,6 +76,7 @@
     "ink-image": "^2.0.0",
     "meow": "^5.0.0",
     "react": "^16.11.0",
+    "term-img": "^4.1.0",
     "terminal-image": "^0.2.0"
   }
 }
