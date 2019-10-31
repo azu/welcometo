@@ -4,10 +4,21 @@ import { AsciiArt } from "./components/AsciiArt";
 import { Image } from "./components/Image";
 
 const got = require("got");
+const isITerm = process.env.TERM_PROGRAM === "iTerm.app";
+const fetchAvatarBuffer = async (name: string) => {
+    const gitHubAvatarURL = `https://github.com/${encodeURIComponent(name)}.png`;
+    if (isITerm) {
+        const { body } = await got(gitHubAvatarURL, { encoding: null });
+        return body;
+    }
+    const headResult = await got.head(gitHubAvatarURL);
+    const resizeURL = `${headResult.url}&s=48`;
+    const { body } = await got(resizeURL, { encoding: null });
+    return body;
+};
 export const start = async ({ organization }: { organization: string }) => {
     const normalizeOrganizationName = organization.replace(/^@/, "").trim();
-    const gitHubAvatarURL = `https://github.com/${encodeURIComponent(normalizeOrganizationName)}.png`;
-    const { body } = await got(gitHubAvatarURL, { encoding: null });
+    const body = await fetchAvatarBuffer(normalizeOrganizationName);
     const App = () => (
         <>
             <AsciiArt text={"WELCOME!"}/>
